@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMORA - Discover Beautiful Photography</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#101116;color:#fff}
+header{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292a32}
+.logo{font-size:27px;font-weight:800;letter-spacing:3px;color:#d8c4ff}
+nav a{color:#ddd;text-decoration:none;margin-left:22px;font-size:14px}
+.hero{padding:75px 7% 60px;background:linear-gradient(120deg,#211a35,#11131c)}
+.hero small{color:#c6a5ff;letter-spacing:3px}
+.hero h1{font-size:clamp(38px,7vw,65px);margin:22px 0;line-height:1.1}
+.hero h1 span{color:#c5a3ff}
+.hero p{color:#bbb;line-height:1.8;max-width:520px}
+.search{margin-top:28px;display:flex;gap:10px;max-width:480px}
+.search input{flex:1;min-width:0;padding:15px;border-radius:9px;border:1px solid #444;background:#171923;color:white}
+button{cursor:pointer;border:0;border-radius:9px;padding:14px 20px;background:#b895f6;color:#17121e;font-weight:bold}
+.section{padding:48px 7%}
+.section h2{font-size:26px;margin-bottom:10px}
+.subtitle{color:#999;margin-bottom:25px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.filters button{background:#242530;color:#ddd;padding:10px 17px}
+.filters button.active{background:#b895f6;color:#17121e}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.photo{background:#1c1d26;border:1px solid #30313a;border-radius:13px;overflow:hidden;transition:.2s}
+.photo:hover{transform:translateY(-5px)}
+.photo img{width:100%;height:230px;object-fit:cover;display:block}
+.info{padding:16px}
+.info h3{margin-bottom:8px}
+.info p{color:#999;font-size:13px;margin-bottom:13px}
+.price{color:#d0b4ff;font-weight:bold}
+.seller{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.seller button{padding:9px 12px;font-size:12px}
+.about{background:#1b1c26;padding:35px;border-radius:15px;line-height:1.8;color:#ccc}
+.about h2{color:white;margin-bottom:12px}
+footer{padding:30px 7%;text-align:center;color:#888;border-top:1px solid #30313a;font-size:13px}
+.empty{color:#aaa;padding:25px 0}
+@media(max-width:600px){
+header{padding:17px 5%}
+nav a{margin-left:10px;font-size:12px}
+.hero,.section{padding-left:5%;padding-right:5%}
+.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.photo img{height:160px}
+.info{padding:11px}
+.info h3{font-size:14px}
+.info p{font-size:11px}
+.seller{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">LUMORA.</div>
+<nav>
+<a href="#home">Beranda</a>
+<a href="#gallery">Galeri</a>
+<a href="#about">Tentang</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<small>THE WORLD OF DIGITAL PHOTOGRAPHY</small>
+<h1>Capture Beauty.<br><span>Share Your Story.</span></h1>
+<p>Temukan keindahan melalui lensa. Jelajahi karya fotografi luar biasa dan jadikan kreativitasmu sebagai peluang penghasilan bersama LUMORA.</p>
+<div class="search">
+<input id="searchInput" type="text" placeholder="Cari fotografi favoritmu...">
+<button onclick="searchPhotos()">Cari</button>
+</div>
+</section>
+
+<section class="section" id="gallery">
+<h2>Explore Photography</h2>
+<p class="subtitle">Temukan inspirasi dari karya para kreator.</p>
+
+<div class="filters">
+<button class="active" onclick="filterPhotos('all',this)">Semua</button>
+<button onclick="filterPhotos('nature',this)">Alam</button>
+<button onclick="filterPhotos('portrait',this)">Portrait</button>
+<button onclick="filterPhotos('city',this)">Kota</button>
+</div>
+
+<div class="gallery" id="photoGallery">
+
+<div class="photo" data-category="nature">
+<img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700" alt="Pemandangan danau pegunungan">
+<div class="info">
+<h3>Mountain Serenity</h3>
+<p>Fotografi Alam</p>
+<div class="seller"><span class="price">Rp50.000</span><button onclick="buyInfo()">Lihat Karya</button></div>
+</div>
+</div>
+
+<div class="photo" data-category="portrait">
+<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700" alt="Portrait">
+<div class="info">
+<h3>Natural Portrait</h3>
+<p>Fotografi Portrait</p>
+<div class="seller"><span class="price">Rp45.000</span><button onclick="buyInfo()">Lihat Karya</button></div>
+</div>
+</div>
+
+<div class="photo" data-category="city">
+<img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=700" alt="Pemandangan kota">
+<div class="info">
+<h3>City Lights</h3>
+<p>Fotografi Kota</p>
+<div class="seller"><span class="price">Rp60.000</span><button onclick="buyInfo()">Lihat Karya</button></div>
+</div>
+</div>
+
+<div class="photo" data-category="nature">
+<img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700" alt="Hutan hijau">
+<div class="info">
+<h3>Into The Forest</h3>
+<p>Fotografi Alam</p>
+<div class="seller"><span class="price">Rp40.000</span><button onclick="buyInfo()">Lihat Karya</button></div>
+</div>
+</div>
+
+</div>
+<p id="emptyMessage" class="empty" hidden>Foto tidak ditemukan.</p>
+</section>
+
+<section class="section" id="about">
+<div class="about">
+<h2>Tentang LUMORA</h2>
+<p>LUMORA adalah platform yang dirancang untuk mempertemukan fotografer dan pecinta fotografi. Kami ingin setiap karya memiliki kesempatan untuk dikenal, diapresiasi, dan menghasilkan nilai ekonomi.</p>
+<br>
+<p><strong>Untuk Kreator:</strong> Bagikan karya fotografimu dan bangun perjalanan kreatifmu.</p>
+<p><strong>Untuk Pembeli:</strong> Temukan fotografi berkualitas untuk koleksi dan kebutuhanmu.</p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 LUMORA. Discover Beauty Through Every Lens.</p>
+<p style="margin-top:8px">A home for photography creators.</p>
+</footer>
+
+<script>
+function filterPhotos(category,button){
+document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+document.querySelectorAll('.photo').forEach(photo=>{
+photo.style.display=(category==='all'||photo.dataset.category===category)?'':'none';
+});
+document.getElementById('emptyMessage').hidden=
+document.querySelectorAll('.photo:not([style*="display: none"])').length>0;
+}
+function searchPhotos(){
+let query=document.getElementById('searchInput').value.toLowerCase();
+let count=0;
+document.querySelectorAll('.photo').forEach(photo=>{
+let match=photo.innerText.toLowerCase().includes(query);
+photo.style.display=match?'':'none';
+if(match)count++;
+});
+document.getElementById('emptyMessage').hidden=count>0;
+}
+function buyInfo(){
+alert('Terima kasih sudah tertarik! Fitur pembelian LUMORA sedang dalam tahap pengembangan.');
+}
+</script>
+
+</body>
+</html>
